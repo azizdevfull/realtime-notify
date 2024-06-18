@@ -8,7 +8,7 @@
 
 <script>
 import echo from "./echo";
-
+import { useToast } from "vue-toastification";
 export default {
     data() {
         return {
@@ -17,8 +17,10 @@ export default {
         };
     },
     mounted() {
+        const toast = useToast();
         echo.channel("notify-channel").listen("NotifyEvent", (e) => {
             this.message = e.data.message;
+            toast.success(`New message: ${e.data.message}`);
         });
     },
 };
