@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { setBearerToken } from "./axios";
 import echo from "./echo";
 import { useToast } from "vue-toastification";
 export default {
@@ -27,8 +28,9 @@ export default {
     // private channel
     mounted() {
         const toast = useToast();
-        const userId = 1; // Replace with your auth logic
-
+        const userId = 1;
+        const userToken = "2|uS2CAxmgUsurnTe561wEEBftN2W2guYf4bsGuHDf7cd370dc";
+        setBearerToken(userToken);
         echo.private(`private-channel.${userId}`).listen(
             "PrivateEvent",
             (e) => {
