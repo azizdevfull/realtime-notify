@@ -16,12 +16,26 @@ export default {
             message: "Waiting for updates...",
         };
     },
+    // public channel
+    // mounted() {
+    //     const toast = useToast();
+    //     echo.channel("notify-channel").listen("NotifyEvent", (e) => {
+    //         this.message = e.data.message;
+    //         toast.success(`New message: ${e.data.message}`);
+    //     });
+    // },
+    // private channel
     mounted() {
         const toast = useToast();
-        echo.channel("notify-channel").listen("NotifyEvent", (e) => {
-            this.message = e.data.message;
-            toast.success(`New message: ${e.data.message}`);
-        });
+        const userId = 1; // Replace with your auth logic
+
+        echo.private(`private-channel.${userId}`).listen(
+            "PrivateEvent",
+            (e) => {
+                this.message = e.data.message;
+                toast.success(`New message: ${e.data.message}`);
+            }
+        );
     },
 };
 </script>
