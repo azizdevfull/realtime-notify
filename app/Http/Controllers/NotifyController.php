@@ -9,7 +9,7 @@ class NotifyController extends Controller
 {
     public function notify(Request $request)
     {
-        $data = ['message' => 'Hello, World 2!'];
+        $data = ['message' => 'Hello from Azizdev!'];
         broadcast(new NotifyEvent($data));
 
         return response()->json($data);
